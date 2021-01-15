@@ -519,9 +519,9 @@ def _parse_crs(crs):
     if crs is None:    
         raise ValueError("Unknown crs data: '{}'".format(crs))
     parts = crs.split(":")
-    if parts[0].upper() != "EPSG":
+    if parts[0][6:10].upper() != "EPSG":
         raise ValueError("Unknown projection '{}'".format(crs))
-    code = int(parts[1])
+    code = int(parts[1][0:4])
     if code == _NATIVE_LONLAT:
         return _NATIVE_LONLAT
     if code == 3857 or code == 3785:
